@@ -1,0 +1,32 @@
+---
+Category: Price Sensitivity
+Title: Personalized Discounting
+Description: Offer a 15-20% discount on the next billing cycle for users who have shown price sensitivity or have downgraded from a premium tier recently. Highlight the ROI of the higher tier.
+---
+Category: Low Engagement
+Title: Re-engagement Email Sequence
+Description: Send a structured 3-part email campaign focusing on newly released features that the user hasn't tried yet. Offer a free 1-on-1 walkthrough with a Customer Success Manager.
+---
+Category: Product Complexity
+Title: Targeted In-App Tutorials
+Description: If the user drops off after using a complex feature, present a guided tooltip tour or a quick video tutorial specifically meant to simplify the confusing module.
+---
+Category: Competitor Risk
+Title: Comparison Marketing
+Description: If the user mentioned a competitor or falls into a high-risk demographic that competitors target, proactively send a feature matrix showing why our product retains superior value.
+---
+Category: Lack of Support
+Title: Priority Support Escalation
+Description: Route any support tickets from this user directly to L2/L3 agents. Minimize wait times to under 1 hour.
+---
+Category: High Balance / Enterprise Risk
+Title: Executive Sponsorship
+Description: Assign an executive sponsor to the account. Schedule a quarterly business review (QBR) to align their strategic goals with our product roadmap.
+---
+Category: Dormant Account
+Title: Value Reminder Report
+Description: Send an automated "Month in Review" report showing the value they got from the platform. If 0 activity, frame it as "What you missed this month". 
+---
+Category: Service Disruption
+Title: Proactive Apology and Credit
+Description: If the user experienced downtime or frequent bugs recently, send an apology email from the engineering team along with service credits to build goodwill.
