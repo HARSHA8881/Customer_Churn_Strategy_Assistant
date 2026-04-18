@@ -116,6 +116,38 @@ with tab2:
        - *Retriever Node:* Queries a ChromaDB vector store for best-practice strategies.
        - *StrategyPlanner Node:* Sythesizes the insights into tailored action plans formatted as strict JSON.
     """)
+    
+    st.graphviz_chart('''
+    digraph G {
+        rankdir=LR;
+        node [shape=box, style=filled, fillcolor="#4f46e5", fontcolor=white, color=black, fontname="Helvetica"];
+        edge [color="#666666"];
+        
+        Input [label="Customer Data\n(Demographics, Finance)", shape=oval, fillcolor="#2b2b36", fontcolor=white];
+        ML [label="ML Predictive Pipeline\n(Scikit-Learn)", fillcolor="#00cc96", fontcolor=black];
+        
+        subgraph cluster_agent {
+            label = "LangGraph Agentic AI Workflow";
+            style = dashed;
+            color = "#a0a0a0";
+            fontcolor=white;
+            
+            Analyzer [label="Risk Analyzer Agent\n(Groq LLM)"];
+            RAG [label="RAG Retriever\n(ChromaDB)"];
+            Planner [label="Strategy Planner Agent\n(Strict JSON Schema)"];
+            
+            Analyzer -> RAG [label=" key risk drivers "];
+            RAG -> Planner [label=" retrieved strategies "];
+        }
+        
+        Input -> ML;
+        ML -> Analyzer [label=" churn probability "];
+        
+        Output [label="Structured Retention Report\n(Action Plan + Ethics)", shape=oval, fillcolor="#2b2b36", fontcolor=white];
+        Planner -> Output;
+    }
+    ''')
+    
     st.info("Powered by LangGraph (Workflow & State), Chroma RAG, and Groq LLMs.")
 
 with tab3:
