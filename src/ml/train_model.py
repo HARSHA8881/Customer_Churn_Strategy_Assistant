@@ -6,6 +6,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
 from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
+from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import classification_report
 import json
@@ -32,14 +33,16 @@ def generate_synthetic_data(filepath):
     
     # Generate some realistic logic for churn
     # Older, more balance in Germany, lower active members tend to churn
-    churn_prob = (
-        (df["Age"] > 45).astype(int) * 0.3 + 
-        (df["IsActiveMember"] == 0).astype(int) * 0.2 + 
-        (df["NumOfProducts"] >= 3).astype(int) * 0.4 +
-        (df["Geography"] == "Germany").astype(int) * 0.1
+    churn_score = (
+        (df["Age"] > 45).astype(int) * 3 + 
+        (df["IsActiveMember"] == 0).astype(int) * 2 + 
+        (df["NumOfProducts"] >= 3).astype(int) * 4 +
+        (df["Geography"] == "Germany").astype(int) * 1
     )
     
-    df["Exited"] = (np.random.rand(n_samples) < churn_prob).astype(int)
+    # Add slight variation but maintain strong deterministic correlation
+    noise = np.random.normal(0, 0.8, n_samples)
+    df["Exited"] = ((churn_score + noise) >= 4.5).astype(int)
     
     os.makedirs(os.path.dirname(filepath), exist_ok=True)
     df.to_csv(filepath, index=False)
@@ -73,7 +76,7 @@ def train_and_save_model(data_path, model_path):
 
     clf = Pipeline(steps=[
         ("preprocessor", preprocessor),
-        ("classifier", LogisticRegression(random_state=42, class_weight="balanced"))
+        ("classifier", RandomForestClassifier(random_state=42, class_weight="balanced", n_estimators=100))
     ])
 
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
