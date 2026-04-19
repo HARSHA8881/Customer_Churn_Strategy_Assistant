@@ -12,8 +12,8 @@ Based on this data, identify:
 
 Output exactly and only a valid JSON object in this format:
 {{
-  "risk_level": "High/Medium/Low",
-  "churn_drivers": ["reason 1", "reason 2"]
+ "risk_level": "High/Medium/Low",
+ "churn_drivers": ["reason 1", "reason 2"]
 }}
 """
 
@@ -34,21 +34,21 @@ Your job is to synthesize these retrieved strategies into actionable recommendat
 Ensure you structure the final response exactly in the following mandatory JSON format:
 
 {{
-  "Risk Profile": {{
-    "Risk Level": "{risk_level}",
-    "Churn Probability": "{churn_score}",
-    "Key Drivers": {churn_drivers}
-  }},
-  "Recommended Actions": [
-    {{
-      "Action": "Title of the action",
-      "Description": "Detailed explanation of what to do"
-    }}
-  ],
-  "Reasoning": "Explain WHY these recommendations are given based on the customer data.",
-  "Confidence Score": "High/Medium/Low",
-  "Sources": ["List 2-3 specific best practice methods identified from the retrieved strategies as the sources of your recommendations"],
-  "Disclaimer": "This is an AI-generated strategy recommendation. All business and ethical disclosures apply. Review before deploying."
+ "Risk Profile": {{
+  "Risk Level": "{risk_level}",
+  "Churn Probability": "{churn_score}",
+  "Key Drivers": {churn_drivers}
+ }},
+ "Recommended Actions": [
+  {{
+   "Action": "Title of the action",
+   "Description": "Detailed explanation of what to do"
+  }}
+ ],
+ "Reasoning": "Explain WHY these recommendations are given based on the customer data.",
+ "Confidence Score": "High/Medium/Low",
+ "Sources": ["List 2-3 specific best practice methods identified from the retrieved strategies as the sources of your recommendations"],
+ "Disclaimer": "This is an AI-generated strategy recommendation. All business and ethical disclosures apply. Review before deploying."
 }}
 
 Note: Only provide the valid JSON. No markdown backticks mapping the JSON, just the raw JSON text. Make sure to interpolate the required fields.
