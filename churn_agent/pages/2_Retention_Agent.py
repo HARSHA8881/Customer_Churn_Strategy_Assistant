@@ -23,7 +23,7 @@ st.markdown("""
         background-color: white;
     }
     .header-main {
-        color: #1a1a2e;
+        color: #0A2540;
         font-size: 28px;
         font-weight: 600;
         margin-bottom: 5px;
@@ -34,42 +34,42 @@ st.markdown("""
         margin-bottom: 30px;
     }
     .section-header {
-        color: #1a1a2e;
+        color: #0A2540;
         font-weight: 600;
         margin-bottom: 15px;
         margin-top: 25px;
         font-size: 20px;
     }
     .flat-card {
-        background-color: #f4f4f4;
-        border: 1px solid #dddddd;
+        background-color: #F0F4F8;
+        border: 1px solid #BFDBFE;
         border-radius: 4px;
         padding: 20px;
         margin-bottom: 20px;
     }
     .badge-critical, .badge-high {
-        background-color: #e63946;
+        background-color: #1D4ED8;
         color: white;
         padding: 4px 8px;
         border-radius: 4px;
         font-weight: bold;
     }
     .badge-medium {
-        background-color: #e9c46a;
-        color: #1a1a2e;
+        background-color: #3B82F6;
+        color: #0A2540;
         padding: 4px 8px;
         border-radius: 4px;
         font-weight: bold;
     }
     .badge-low {
-        background-color: #2a9d8f;
+        background-color: #60A5FA;
         color: white;
         padding: 4px 8px;
         border-radius: 4px;
         font-weight: bold;
     }
     div.stButton > button:first-child {
-        background-color: #1a1a2e;
+        background-color: #0A2540;
         color: white;
         border: none;
         border-radius: 4px;
@@ -130,7 +130,7 @@ with col_right:
         
     if run_agent:
         if not ml_model:
-            st.markdown('<div style="color:#e63946;font-weight:bold;">ML model not found. Cannot compute churn probability.</div>', unsafe_allow_html=True)
+            st.markdown('<div style="color:#1D4ED8;font-weight:bold;">ML model not found. Cannot compute churn probability.</div>', unsafe_allow_html=True)
         else:
             inputs = {
                 "CustomerID": customer_id,
@@ -168,7 +168,7 @@ with col_right:
                     status_containers[node_name].markdown(f"**{node_name}** | Complete")
                     
             if current_state.get("error"):
-                st.markdown(f'<div style="color:#e63946;font-weight:bold;">Agent failed: {current_state["error"]}</div>', unsafe_allow_html=True)
+                st.markdown(f'<div style="color:#1D4ED8;font-weight:bold;">Agent failed: {current_state["error"]}</div>', unsafe_allow_html=True)
                 report = current_state.get("final_report", {})
             else:
                 report = current_state.get("final_report", {})
@@ -201,9 +201,9 @@ if report:
         table_html += "<tr style='border-bottom:1px solid #ddd; text-align:left;'><th>Priority</th><th>Action</th><th>Rationale</th></tr>"
         for act in actions:
             pri = str(act.get("priority", "Low"))
-            color = "#2a9d8f"
-            if pri == "High": color = "#e63946"
-            elif pri == "Medium": color = "#e9c46a"
+            color = "#60A5FA"
+            if pri == "High": color = "#1D4ED8"
+            elif pri == "Medium": color = "#3B82F6"
             
             table_html += f"<tr style='border-bottom:1px solid #eee;'>"
             table_html += f"<td style='color:{color}; font-weight:bold;'>{pri}</td>"
@@ -246,17 +246,17 @@ st.markdown('<div class="section-header">Agent Workflow Diagram</div>', unsafe_a
 st.graphviz_chart('''
 digraph G {
     rankdir=LR;
-    node [shape=box, style=filled, fillcolor="#f4f4f4", fontcolor="#1a1a2e", color="#dddddd", fontname="system-ui"];
-    edge [color="#1a1a2e"];
+    node [shape=box, style=filled, fillcolor="#F0F4F8", fontcolor="#0A2540", color="#BFDBFE", fontname="system-ui"];
+    edge [color="#0A2540"];
     
-    START [shape=circle, width=0.5, style=filled, fillcolor="#2a9d8f", fontcolor="white"];
-    END [shape=circle, width=0.5, style=filled, fillcolor="#e63946", fontcolor="white"];
+    START [shape=circle, width=0.5, style=filled, fillcolor="#60A5FA", fontcolor="white"];
+    END [shape=circle, width=0.5, style=filled, fillcolor="#1D4ED8", fontcolor="white"];
     
     risk_profiler [label="Risk\nProfiler"];
     strategy_retriever [label="Strategy\nRetriever"];
     intervention_planner [label="Intervention\nPlanner"];
     report_generator [label="Report\nGenerator"];
-    error_handler [label="Error\nHandler", fillcolor="#e63946", fontcolor="white"];
+    error_handler [label="Error\nHandler", fillcolor="#1D4ED8", fontcolor="white"];
     
     START -> risk_profiler;
     risk_profiler -> strategy_retriever;
@@ -264,9 +264,9 @@ digraph G {
     intervention_planner -> report_generator;
     report_generator -> END;
     
-    risk_profiler -> error_handler [color="#e63946", style="dashed"];
-    strategy_retriever -> error_handler [color="#e63946", style="dashed"];
-    intervention_planner -> error_handler [color="#e63946", style="dashed"];
-    report_generator -> error_handler [color="#e63946", style="dashed"];
+    risk_profiler -> error_handler [color="#1D4ED8", style="dashed"];
+    strategy_retriever -> error_handler [color="#1D4ED8", style="dashed"];
+    intervention_planner -> error_handler [color="#1D4ED8", style="dashed"];
+    report_generator -> error_handler [color="#1D4ED8", style="dashed"];
 }
 ''')
