@@ -23,133 +23,124 @@ st.set_page_config(
 # --- Premium Custom CSS ---
 st.markdown("""
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
 
-    /* Global Typography & Background */
     html, body, [class*="css"]  {
         font-family: 'Inter', sans-serif;
-        -webkit-font-smoothing: antialiased;
     }
     
-    /* Header Bar */
-    .top-header {
+    /* Top Hero Banner Match */
+    .top-hero {
+        background: linear-gradient(135deg, #16243d 0%, #0f4b66 100%);
+        border-radius: 14px;
+        padding: 40px;
+        color: white;
+        margin-bottom: 40px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+    .hero-badge {
+        background-color: #00d2b4;
+        color: #022c22;
+        font-weight: 800;
+        font-size: 0.7rem;
+        padding: 6px 14px;
+        border-radius: 20px;
+        text-transform: uppercase;
+        display: inline-block;
+        margin-bottom: 24px;
+        letter-spacing: 1px;
+    }
+    .hero-title { 
+        font-size: 2.8rem; 
+        font-weight: 800; 
+        margin-bottom: 16px; 
+        line-height: 1.2;
+        color: #ffffff;
+    }
+    .hero-subtitle { 
+        color: #e2e8f0; 
+        font-size: 1.05rem; 
+        max-width: 800px; 
+        line-height: 1.6;
+        font-weight: 400;
+    }
+    
+    /* Section Headers */
+    .section-header {
         display: flex;
         align-items: center;
-        padding-bottom: 24px;
-        margin-bottom: 30px;
-        border-bottom: 1px solid rgba(255,255,255,0.05);
+        font-size: 1.4rem;
+        font-weight: 800;
+        color: #0f172a;
+        margin-top: 30px;
+        margin-bottom: 20px;
     }
-    .top-header h1 { margin: 0; padding: 0; font-weight: 700; color: #ffffff; font-size: 2.2rem; display: flex; align-items: center; gap: 12px; }
-    .header-tagline { color: #94a3b8; font-weight: 400; font-size: 1.1rem; margin-top: 8px; }
+    .section-header::after {
+        content: "";
+        flex: 1;
+        margin-left: 20px;
+        height: 2px;
+        background-color: #e2e8f0;
+    }
 
-    /* Glassmorphic Cards */
-    .report-card {
-        background: rgba(30, 41, 59, 0.7);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        border-radius: 16px;
-        padding: 30px;
-        box-shadow: 0 10px 40px -10px rgba(0,0,0,0.5);
-        color: #f8fafc;
-        margin-bottom: 24px;
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    /* System Dashboard Cards */
+    .info-card {
+        background-color: white;
+        border-radius: 12px;
+        padding: 24px;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        border: 1px solid #f1f5f9;
+        margin-bottom: 16px;
     }
-    .report-card:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 20px 40px -10px rgba(0,0,0,0.7);
+    .card-title { font-size: 0.75rem; font-weight: 800; color: #94a3b8; text-transform: uppercase; margin-bottom: 15px; letter-spacing: 1px;}
+    .card-value { font-size: 2.5rem; font-weight: 800; color: #0f172a; margin-bottom: 15px; line-height: 1; }
+    .card-pill {
+        display: inline-block;
+        padding: 5px 12px;
+        border-radius: 20px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        width: fit-content;
     }
     
-    /* Risk Badges */
-    .risk-badge {
+    .pill-green { background-color: #dcfce7; color: #166534; }
+    .pill-blue { background-color: #dbeafe; color: #1e40af; }
+    .pill-purple { background-color: #f3e8ff; color: #6b21a8; }
+    .pill-red { background-color: #fee2e2; color: #991b1b; }
+    .pill-gray { background-color: #f1f5f9; color: #475569; }
+
+    /* Number Badge for Quick Start structure */
+    .num-badge {
+        background-color: #3b82f6;
+        color: white;
+        width: 28px;
+        height: 28px;
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        padding: 6px 14px;
-        border-radius: 999px;
-        font-weight: 600;
-        font-size: 0.95rem;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-    }
-    .badge-high { background-color: rgba(239, 68, 68, 0.15); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.3); }
-    .badge-medium { background-color: rgba(245, 158, 11, 0.15); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3); }
-    .badge-low { background-color: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); }
-
-    /* Tags / Chips for Drivers */
-    .driver-tag {
-        display: inline-block;
-        background: rgba(56, 189, 248, 0.1);
-        border: 1px solid rgba(56, 189, 248, 0.2);
-        color: #38bdf8;
-        padding: 6px 14px;
-        border-radius: 8px;
-        margin: 4px 8px 4px 0;
+        border-radius: 50%;
+        font-weight: bold;
         font-size: 0.9rem;
-        font-weight: 500;
-        transition: background 0.2s;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        margin-right: 12px;
     }
-    .driver-tag:hover { background: rgba(56, 189, 248, 0.2); }
 
-    /* Action Item Cards (Recommendations) */
-    .action-item {
-        background: rgba(15, 23, 42, 0.6);
-        border: 1px solid rgba(255, 255, 255, 0.05);
-        border-left: 4px solid #6366f1;
+    /* Actionable items in Agent output */
+    .action-row {
+        background: white;
+        border: 1px solid #e2e8f0;
+        border-radius: 10px;
         padding: 20px;
-        margin-top: 14px;
-        border-radius: 12px;
+        margin-bottom: 12px;
         display: flex;
-        flex-direction: column;
-        gap: 8px;
-        transition: all 0.3s ease;
+        align-items: flex-start;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.02);
     }
-    .action-item:hover {
-        border-left-color: #818cf8;
-        background: rgba(30, 41, 59, 0.8);
-        transform: translateX(4px);
-    }
-    .action-title { font-weight: 600; font-size: 1.15rem; color: #f1f5f9; display:flex; align-items:center; gap: 10px;}
-    .action-desc { color: #cbd5e1; font-size: 1rem; line-height: 1.6; }
+    .action-desc { color: #475569; line-height: 1.6; font-size: 0.95rem; }
 
-    /* Stepper / Timeline */
-    .timeline-item {
-        display: flex;
-        align-items: baseline;
-        gap: 12px;
-        margin-bottom: 14px;
-        color: #e2e8f0;
-        font-size: 1.05rem;
-    }
-    .timeline-icon {
-        color: #6366f1;
-        font-size: 1.3rem;
-    }
-
-    /* Buttons */
-    .stButton>button {
-        width: 100%;
-        background: linear-gradient(135deg, #4f46e5 0%, #3b82f6 100%) !important;
-        color: white !important;
-        border: none !important;
-        border-radius: 10px !important;
-        padding: 14px !important;
-        font-weight: 600 !important;
-        font-size: 1.05rem !important;
-        box-shadow: 0 4px 14px rgba(79, 70, 229, 0.4) !important;
-        transition: all 0.3s ease !important;
-    }
-    .stButton>button:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(79, 70, 229, 0.6) !important;
-    }
-
-    /* Target specific streamlit elements for premium feel */
-    div[data-testid="stMetricValue"] {
-        font-size: 2.5rem !important;
-    }
-
+    .sidebar-text { color: #f8fafc !important; }
 </style>
 """, unsafe_allow_html=True)
 
@@ -191,15 +182,57 @@ except Exception as e:
 # --- Application UI ---
 
 st.markdown("""
-<div class="top-header">
-    <div>
-        <h1><span style="color:#6366f1;">💠 Zenith</span> AI Retention Intelligence</h1>
-        <div class="header-tagline">Advanced Agentic Workflows & Predictive Analytics for Customer Success</div>
+<div class="top-hero">
+    <div class="hero-badge">Agentic AI • Customer Retention</div>
+    <div class="hero-title">Welcome to the Customer Churn Strategy Framework!</div>
+    <div class="hero-subtitle">
+        This system evaluates the probability of a bank customer leaving. Built on classical ML principles and advanced generative AI (LangGraph + RAG), we've integrated predictive modeling with intelligent, autonomous Agent workflows into a clean, interactive interface. Navigate the sidebar to test predictions and generate retention blueprints.
     </div>
 </div>
 """, unsafe_allow_html=True)
 
-tab1, tab2, tab3 = st.tabs(["🚀 Command Center", "🧠 Architecture & Context", "📊 Model Intelligence"])
+st.markdown("<div class='section-header'>System Dashboard</div>", unsafe_allow_html=True)
+col_d1, col_d2, col_d3, col_d4 = st.columns(4)
+
+with col_d1:
+    st.markdown("""
+    <div class='info-card'>
+        <div class='card-title'>Models Trained</div>
+        <div class='card-value'>1</div>
+        <div class='card-pill pill-green'>Ready to predict</div>
+    </div>
+    """, unsafe_allow_html=True)
+    
+with col_d2:
+    st.markdown("""
+    <div class='info-card'>
+        <div class='card-title'>LLM Backend</div>
+        <div class='card-value'>Groq</div>
+        <div class='card-pill pill-blue'>Llama 3 Connected</div>
+    </div>
+    """, unsafe_allow_html=True)
+    
+with col_d3:
+    st.markdown("""
+    <div class='info-card'>
+        <div class='card-title'>Knowledge Base</div>
+        <div class='card-value'>Chroma</div>
+        <div class='card-pill pill-purple'>Semantic Search active</div>
+    </div>
+    """, unsafe_allow_html=True)
+    
+with col_d4:
+    st.markdown("""
+    <div class='info-card'>
+        <div class='card-title'>Framework</div>
+        <div class='card-value'>Streamlit</div>
+        <div class='card-pill pill-blue'>+ LangGraph</div>
+    </div>
+    """, unsafe_allow_html=True)
+
+st.divider()
+
+tab1, tab2, tab3 = st.tabs(["🚀 Command Center", "🧠 Architecture Status", "📊 Performance Evaluation"])
 
 with tab2:
     st.header("🧠 Problem Understanding & Business Context")
@@ -278,38 +311,35 @@ with tab3:
         
 # --- Sidebar Inputs ---
 with st.sidebar:
-    st.markdown("### 👤 Profile Configuration")
-    st.markdown("<p style='color:#94a3b8; font-size:0.95rem; margin-bottom: 20px;'>Define customer risk parameters to trigger the AI analysis.</p>", unsafe_allow_html=True)
+    st.markdown("<h3 style='color:white; margin-bottom: 20px;'>Customer Profile Config</h1>", unsafe_allow_html=True)
+    st.markdown("<p style='color:#cbd5e1; font-size:0.95rem; margin-bottom: 20px;'>Define customer risk parameters to trigger the AI analysis.</p>", unsafe_allow_html=True)
     
-    with st.container(border=True):
-        st.markdown("**🗣️ Demographics**")
-        age = st.slider("Age", 18, 90, 45)
-        col1, col2 = st.columns(2)
-        with col1:
-            geography = st.selectbox("Market", ["France", "Spain", "Germany"])
-        with col2:
-            gender = st.selectbox("Gender", ["Male", "Female"])
+    st.markdown("<strong style='color:white'>🗣️ Demographics</strong>", unsafe_allow_html=True)
+    age = st.slider("Age", 18, 90, 45)
+    col1, col2 = st.columns(2)
+    with col1:
+        geography = st.selectbox("Market", ["France", "Spain", "Germany"])
+    with col2:
+        gender = st.selectbox("Gender", ["Male", "Female"])
 
-    with st.container(border=True):
-        st.markdown("**💰 Financials & Revenue**")
-        tenure = st.number_input("Tenure (Years)", 0, 10, 3)
-        balance = st.number_input("Account Balance ($)", 0.0, 250000.0, 100000.0)
-        salary = st.number_input("Est. Salary ($)", 10000.0, 250000.0, 80000.0)
-        
-    with st.container(border=True):
-        st.markdown("**📈 Product Engagement**")
-        num_products = st.selectbox("Active Products", [1, 2, 3, 4], index=1)
-        credit_score = st.slider("Credit Score", 300, 850, 650)
-        col_c1, col_c2 = st.columns(2)
-        with col_c1:
-            is_active = st.selectbox("Status", ["Inactive", "Active"])
-            is_active = 1 if is_active == "Active" else 0
-        with col_c2:
-            has_crcard = st.selectbox("Credit Card", ["Yes", "No"])
-            has_crcard = 1 if has_crcard == "Yes" else 0
+    st.markdown("<br><strong style='color:white'>💰 Financials & Revenue</strong>", unsafe_allow_html=True)
+    tenure = st.number_input("Tenure (Years)", 0, 10, 3)
+    balance = st.number_input("Account Balance ($)", 0.0, 250000.0, 100000.0)
+    salary = st.number_input("Est. Salary ($)", 10000.0, 250000.0, 80000.0)
+    
+    st.markdown("<br><strong style='color:white'>📈 Product Engagement</strong>", unsafe_allow_html=True)
+    num_products = st.selectbox("Active Products", [1, 2, 3, 4], index=1)
+    credit_score = st.slider("Credit Score", 300, 850, 650)
+    col_c1, col_c2 = st.columns(2)
+    with col_c1:
+        is_active = st.selectbox("Status", ["Inactive", "Active"])
+        is_active = 1 if is_active == "Active" else 0
+    with col_c2:
+        has_crcard = st.selectbox("Credit Card", ["Yes", "No"])
+        has_crcard = 1 if has_crcard == "Yes" else 0
 
     st.markdown("<br>", unsafe_allow_html=True)
-    analyze_button = st.button("🚀 Execute AI Risk Analysis")
+    analyze_button = st.button("🚀 Evaluate Individual Risk Profile")
 
 # --- Main Logic ---
 if analyze_button:
@@ -327,41 +357,32 @@ if analyze_button:
     }
     
     with tab1:
-        # --- 1. Predictive Intelligence Layer ---
-        st.markdown("### 📈 Predictive Intelligence")
+        st.markdown("<div class='section-header'>Predictive Analysis Output</div>", unsafe_allow_html=True)
         
         df_input = pd.DataFrame([customer_data])
         with st.empty():
             with st.spinner("Initializing predictive engine..."):
-                time.sleep(0.6) # Micro interaction feel
+                time.sleep(0.4)
                 churn_prob = st.session_state.model.predict_proba(df_input)[0][1]
 
-        # Gauge / Progress Simulation
-        col_metric, col_assess = st.columns([1, 2])
-        with col_metric:
-            color_hex = '#ef4444' if churn_prob > 0.5 else ('#f59e0b' if churn_prob > 0.3 else '#10b981')
-            st.markdown(f"""
-            <div style="background:rgba(30,41,59,0.7); padding:24px; border-radius:16px; border:1px solid rgba(255,255,255,0.05); text-align:center; box-shadow: 0 10px 25px rgba(0,0,0,0.2);">
-                <h4 style="color:#94a3b8; font-weight:500; margin-bottom:10px; font-size:1.05rem; margin-top:0;">Risk Probability Score</h4>
-                <div style="font-size:3.5rem; font-weight:700; color:{color_hex}; line-height:1;">
-                    {churn_prob:.1%}
-                </div>
-            </div>
-            """, unsafe_allow_html=True)
-            st.progress(float(churn_prob))
-            
-        with col_assess:
-            st.markdown("<br>", unsafe_allow_html=True)
-            if churn_prob > 0.5:
-                st.error("⚠️ **CRITICAL RISK DETECTED:** The machine learning model strongly signals an impending churn event. Overriding standard protocol and escalating to Agentic AI workflow for immediate strategic intervention.")
-            else:
-                st.success("✅ **STABLE PROFILE DETECTED:** Baseline variance detected. Running through Agentic workflow to generate preventative, long-term enrichment strategies.")
-
-        st.markdown("<br><hr style='border-color:rgba(255,255,255,0.05);'><br>", unsafe_allow_html=True)
+        # White info card style for outputs
+        pill_class = 'pill-red' if churn_prob > 0.5 else ('pill-blue' if churn_prob > 0.3 else 'pill-green')
+        status_text = 'High Risk' if churn_prob > 0.5 else 'Stable'
         
-        # --- 2. Agentic Reasoning Layer ---
-        st.markdown("### 🧠 Autonomous Agent Pipeline")
-        st.markdown("<p style='color:#94a3b8; font-size:0.95rem; margin-bottom: 20px;'>LangGraph orchestrating Risk Analyzer, Vector DB Retrieval, and Strategy Planning nodes.</p>", unsafe_allow_html=True)
+        st.markdown(f"""
+        <div class='info-card'>
+            <div class='card-title'>Churn Probability Score (Random Forest)</div>
+            <div class='card-value'>{churn_prob:.1%}</div>
+            <div class='card-pill {pill_class}'>{status_text}</div>
+            <p style='color:#475569; margin-top:15px; font-size:0.95rem;'>
+                {'⚠️ Priority intervention required. The predictive pipeline strongly signals risk.' if churn_prob > 0.5 
+                else '✅ Baseline variance. No immediate predictive risk flags.'}
+            </p>
+        </div>
+        """, unsafe_allow_html=True)
+        
+        # --- 2. Agentic Reasoning Layer - Quick Start Format ---
+        st.markdown("<div class='section-header'>Agentic Intervention Strategy</div>", unsafe_allow_html=True)
         
         with st.status("Deploying Zenith AI Agents...", expanded=True) as status:
             initial_state = {
@@ -396,52 +417,48 @@ if analyze_button:
         else:
             report = state["final_recommendations"]
             risk_profile = report.get("Risk Profile", {})
-            risk_level = risk_profile.get("Risk Level", "Unknown")
             
-            # --- Output Presentation Layer ---
-            st.markdown("<br>### 📋 Prescriptive Retention Blueprint", unsafe_allow_html=True)
-            st.markdown("<div class='report-card'>", unsafe_allow_html=True)
+            # --- Output Presentation Layer - Structured like the reference image list ---
+            # Diagnostic Data
+            st.markdown("""
+            <div class='action-row'>
+                <div class='num-badge'>1</div>
+                <div>
+                    <h4 style='margin:0 0 8px 0; color:#0f172a'>Risk Matrix & Key Drivers</h4>
+                    <div class='action-desc'>
+            """, unsafe_allow_html=True)
             
-            # Header Row
-            badge_class = "badge-high" if "High" in risk_level else ("badge-medium" if "Medium" in risk_level else "badge-low")
+            for driver in risk_profile.get("Key Drivers", []):
+                st.markdown(f"• {driver}")
             
-            col_h1, col_h2, col_h3 = st.columns(3)
-            col_h1.markdown(f"<span class='risk-badge {badge_class}'>Risk Severity: {risk_level}</span>", unsafe_allow_html=True)
-            col_h2.markdown(f"<span style='color:#94a3b8; font-size:1.05rem;'>Confidence Matrix:</span> <strong style='color:white; font-size:1.1rem;'>{report.get('Confidence Score', 'Unknown')}</strong>", unsafe_allow_html=True)
-            col_h3.markdown(f"<span style='color:#94a3b8; font-size:1.05rem;'>Probability Index:</span> <strong style='color:white; font-size:1.1rem;'>{risk_profile.get('Churn Probability', 'N/A')}</strong>", unsafe_allow_html=True)
+            st.markdown(f"""
+                    </div>
+                </div>
+            </div>
             
-            st.markdown("<hr style='border-color:rgba(255,255,255,0.05); margin: 24px 0;'>", unsafe_allow_html=True)
+            <div class='action-row'>
+                <div class='num-badge'>2</div>
+                <div>
+                    <h4 style='margin:0 0 8px 0; color:#0f172a'>Agentic Reasoning Summary</h4>
+                    <div class='action-desc'>{report.get('Reasoning', '')}</div>
+                </div>
+            </div>
+            """, unsafe_allow_html=True)
             
-            # Context & Drivers
-            st.markdown("<h4 style='color:#e2e8f0; font-size:1.2rem; margin-bottom:14px; display:flex; align-items:center; gap:8px;'>📊 Diagnostic Drivers</h4>", unsafe_allow_html=True)
-            drivers_html = "".join([f"<span class='driver-tag'>{driver}</span>" for driver in risk_profile.get("Key Drivers", [])])
-            st.markdown(f"<div>{drivers_html}</div>", unsafe_allow_html=True)
-            
-            st.markdown("<h4 style='color:#e2e8f0; font-size:1.2rem; margin-top:28px; margin-bottom:12px; display:flex; align-items:center; gap:8px;'>🧠 Agent Reasoning Context</h4>", unsafe_allow_html=True)
-            st.markdown(f"<div style='background:rgba(255,255,255,0.03); padding:16px; border-radius:10px; border-left: 3px solid #64748b; color:#cbd5e1; font-size:1.05rem; line-height: 1.6;'>{report.get('Reasoning', 'No reasoning provided.')}</div>", unsafe_allow_html=True)
-            
-            # Actionable Steps As Premium Cards
-            st.markdown("<h4 style='color:#e2e8f0; font-size:1.2rem; margin-top:32px; margin-bottom:14px; display:flex; align-items:center; gap:8px;'>🎯 Authorized Interventions</h4>", unsafe_allow_html=True)
+            # Actionable Steps As Reference Format
             actions = report.get("Recommended Actions", [])
             for i, act in enumerate(actions):
                 st.markdown(f"""
-                <div class='action-item'>
-                    <div class='action-title'>
-                        <span style="background:rgba(99,102,241,0.2); color:#818cf8; padding:4px 10px; border-radius:6px; font-size:0.85rem; margin-right:12px; font-weight:700;">Task 0{i+1}</span>
-                        {act.get('Action', 'Action Item')}
+                <div class='action-row'>
+                    <div class='num-badge'>{i+3}</div>
+                    <div>
+                        <h4 style='margin:0 0 8px 0; color:#0f172a'>{act.get('Action', 'Prescriptive Action')}</h4>
+                        <div class='action-desc'>{act.get('Description', '')}</div>
                     </div>
-                    <div class='action-desc'>{act.get('Description', '')}</div>
                 </div>
                 """, unsafe_allow_html=True)
             
-            # Sources integration
-            sources = report.get("Sources", [])
-            if sources:
-                st.markdown("<div style='margin-top:24px; padding-top:16px; border-top:1px solid rgba(255,255,255,0.05)'><p style='color:#64748b; font-size: 0.9rem;'><strong>📖 Grounded Protocol Sources:</strong> " + ", ".join(sources) + "</p></div>", unsafe_allow_html=True)
-                
-            st.markdown("</div>", unsafe_allow_html=True) # End Report Card
-            
-            st.markdown(f"<p style='color:#64748b; font-size:0.85rem;'>🔒 <strong>System Disclosure:</strong> {report.get('Disclaimer', 'This strategy is synthesized by AI. Please review thoroughly before executing in the CRM.')}</p>", unsafe_allow_html=True)
+            st.markdown(f"<p style='color:#64748b; font-size:0.85rem; margin-top:20px;'>🔒 <strong>System Disclosure:</strong> {report.get('Disclaimer', '')}</p>", unsafe_allow_html=True)
             
             st.markdown("<br>", unsafe_allow_html=True)
             with st.expander("Show Raw Execution JSON Schema"):
