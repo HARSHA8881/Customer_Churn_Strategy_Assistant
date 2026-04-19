@@ -9,7 +9,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 st.set_page_config(page_title="Milestone 1: Upload & Predict", layout="wide")
 
-st.markdown('<div style="color:#1a1a2e;font-size:28px;font-weight:600;">Milestone 1: ML-Based Customer Churn Prediction</div>', unsafe_allow_html=True)
+st.markdown('<div style="color:#0A2540;font-size:28px;font-weight:600;">Milestone 1: ML-Based Customer Churn Prediction</div>', unsafe_allow_html=True)
 
 @st.cache_resource
 def load_model():
@@ -21,9 +21,9 @@ def load_model():
 model = load_model()
 
 if model is None:
-    st.markdown('<div style="color:#e9c46a;font-weight:bold;">Model not found. Please train a model first or check if models/trained_models.pkl exists.</div>', unsafe_allow_html=True)
+    st.markdown('<div style="color:#3B82F6;font-weight:bold;">Model not found. Please train a model first or check if models/trained_models.pkl exists.</div>', unsafe_allow_html=True)
 else:
-    st.markdown('<div style="color:#1a1a2e;font-size:20px;font-weight:600;margin-top:20px;margin-bottom:10px;">Predict Churn using Trained ML Pipeline</div>', unsafe_allow_html=True)
+    st.markdown('<div style="color:#0A2540;font-size:20px;font-weight:600;margin-top:20px;margin-bottom:10px;">Predict Churn using Trained ML Pipeline</div>', unsafe_allow_html=True)
     st.markdown("Enter customer details:")
     
     col1, col2, col3 = st.columns(3)
@@ -63,6 +63,6 @@ else:
         
         st.metric("Churn Risk", f"{prob:.1%}")
         if prob > 0.5:
-            st.markdown('<div style="color:#e63946;font-weight:bold;">High Risk of Churn</div>', unsafe_allow_html=True)
+            st.markdown('<div style="color:#1D4ED8;font-weight:bold;">High Risk of Churn</div>', unsafe_allow_html=True)
         else:
-            st.markdown('<div style="color:#2a9d8f;font-weight:bold;">Customer Retained</div>', unsafe_allow_html=True)
+            st.markdown('<div style="color:#60A5FA;font-weight:bold;">Customer Retained</div>', unsafe_allow_html=True)

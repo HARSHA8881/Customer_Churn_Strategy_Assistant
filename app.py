@@ -23,20 +23,20 @@ st.set_page_config(
 st.markdown("""
 <style>
     .report-card {
-        background: linear-gradient(145deg, #1e1e24, #2a2a35);
+        background: linear-gradient(145deg, #FFFFFF, #F0F8FF);
         border-radius: 12px;
         padding: 20px;
         box-shadow: 4px 4px 15px rgba(0,0,0,0.2);
-        color: white;
+        color: #0A2540;
         margin-bottom: 20px;
     }
-    .risk-high { color: #ff4b4b; font-weight: bold; font-size: 1.2rem; }
-    .risk-medium { color: #faca2b; font-weight: bold; font-size: 1.2rem; }
-    .risk-low { color: #00cc96; font-weight: bold; font-size: 1.2rem; }
+    .risk-high { color: #1D4ED8; font-weight: bold; font-size: 1.2rem; }
+    .risk-medium { color: #3B82F6; font-weight: bold; font-size: 1.2rem; }
+    .risk-low { color: #60A5FA; font-weight: bold; font-size: 1.2rem; }
     
     .action-item {
-        background-color: #2b2b36;
-        border-left: 5px solid #00cc96;
+        background-color: #E0E7FF;
+        border-left: 5px solid #60A5FA;
         padding: 15px;
         margin-top: 10px;
         border-radius: 5px;
@@ -44,13 +44,13 @@ st.markdown("""
     
     .stButton>button {
         width: 100%;
-        background-color: #4F46E5 !important;
+        background-color: #1D4ED8 !important;
         color: white !important;
         border-radius: 8px !important;
         font-weight: bold;
     }
     .stButton>button:hover {
-        background-color: #4338CA !important;
+        background-color: #1E40AF !important;
     }
     
     .stAlert { margin-top: 20px; }
@@ -120,17 +120,17 @@ with tab2:
     st.graphviz_chart('''
     digraph G {
         rankdir=LR;
-        node [shape=box, style=filled, fillcolor="#4f46e5", fontcolor=white, color=black, fontname="Helvetica"];
+        node [shape=box, style=filled, fillcolor="#4f46e5", fontcolor="#0A2540", color=black, fontname="Helvetica"];
         edge [color="#666666"];
         
-        Input [label="Customer Data\n(Demographics, Finance)", shape=oval, fillcolor="#2b2b36", fontcolor=white];
-        ML [label="ML Predictive Pipeline\n(Scikit-Learn)", fillcolor="#00cc96", fontcolor=black];
+        Input [label="Customer Data\n(Demographics, Finance)", shape=oval, fillcolor="#E0E7FF", fontcolor="#0A2540"];
+        ML [label="ML Predictive Pipeline\n(Scikit-Learn)", fillcolor="#60A5FA", fontcolor=black];
         
         subgraph cluster_agent {
             label = "LangGraph Agentic AI Workflow";
             style = dashed;
             color = "#a0a0a0";
-            fontcolor=white;
+            fontcolor="#0A2540";
             
             Analyzer [label="Risk Analyzer Agent\n(Groq LLM)"];
             RAG [label="RAG Retriever\n(ChromaDB)"];
@@ -143,7 +143,7 @@ with tab2:
         Input -> ML;
         ML -> Analyzer [label=" churn probability "];
         
-        Output [label="Structured Retention Report\n(Action Plan + Ethics)", shape=oval, fillcolor="#2b2b36", fontcolor=white];
+        Output [label="Structured Retention Report\n(Action Plan + Ethics)", shape=oval, fillcolor="#E0E7FF", fontcolor="#0A2540"];
         Planner -> Output;
     }
     ''')
