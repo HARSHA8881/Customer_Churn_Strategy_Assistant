@@ -470,6 +470,7 @@ if analyze_button:
       </div>
       """, unsafe_allow_html=True)
       
+      st.markdown(f"""
       <div class='action-row'>
         <div class='num-badge'>2</div>
         <div>
